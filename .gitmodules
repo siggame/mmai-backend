@@ -1,0 +1,6 @@
+[submodule "mmai-api"]
+	path = mmai-api
+	url = https://github.com/siggame/mmai-api.git
+[submodule "mmai-db"]
+	path = mmai-db
+	url = https://github.com/siggame/mmai-db.git
