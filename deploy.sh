@@ -1,5 +1,6 @@
 echo "Deploying backend..."
 
-docker-compose up -d
+# Bring the containers up in detached mode, running them in the background rather than connecting them to the terminal
+docker-compose up --detach
 
 echo "Successfully deployed!"
