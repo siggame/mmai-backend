@@ -1,11 +1,5 @@
-echo "Deploying database container..."
-cd ./mmai-db
-docker-compose up -d
-cd ..
+echo "Deploying backend..."
 
-echo "Deploying API container..."
-cd ./mmai-api
-./startDocker.sh
-cd ..
+docker-compose up -d
 
 echo "Successfully deployed!"
