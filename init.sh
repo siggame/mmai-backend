@@ -3,7 +3,7 @@
 echo "Initializing all submodules..."
 git submodule update --init --recursive
 
-repos=("./mmai-api" "./mmai-db")
+repos=("./mmai-api")
 
 for repo in "${repos[@]}"
 do
@@ -17,4 +17,6 @@ do
     cd ..
 done
 
-echo "Backend prepared! Now, you must ensure that everything is set up for each submodule..."
+echo "Submodules initialized!"
+echo "Now, skim the README of each one and ensure it's prepared for deployment."
+echo "Afterwards, come back here and run the deploy script."
