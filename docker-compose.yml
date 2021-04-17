@@ -1,0 +1,60 @@
+# Define the version of docker-compose file format we are using
+version: '3'
+
+
+# Configure the networks available for in compose file
+networks:
+
+  # Redefine part of the default network
+  default:
+
+    # Just renaming it
+    name: mmai-backend-network
+
+
+# Define the services we are creating
+services:
+
+  # Create a service named mmai-db
+  mmai-db:
+
+    # Service uses the latest mongo Docker image
+    image: mongo:latest
+
+    # Name the container
+    container_name: "mmai-db-container"
+
+    # Expose container port 27017 to host machine port 27017
+    # Essentially makes it so that if someone connects to the host running this
+    # container on port 27017, it is directed to port 27017 on the container.
+    # Outside the host computer, it looks like the host itself is running
+    # something on port 27017, rather than a container running it.
+    # Port 27017 is a standard MongoDB port.
+    ports:
+      - "27017:27017"
+    
+    # Define folders/files to use in the container
+    volumes:
+
+      # Use folder /db_data on the host machine to store the container's database files.
+      # Allows us to destroy the container without destroying the database files,
+      # because they are stored on the host and only shared to the container.
+      - ./db_data:/data/db
+
+      # Copy our init.js script to a folder that exists in the container already.
+      # It's used to initialize the database. ":ro" makes it read-only.
+      - ./init.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+
+
+  # Create a service named mmai-api
+  mmai-api:
+
+    # Build an image using the mmai-api folder's Dockerfile
+    build: ./mmai-api
+
+    # Name the container
+    container_name: "mmai-api-container"
+    
+    # Port 3000 is a standard Express port.
+    ports:
+      - "3000:3000"

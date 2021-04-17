@@ -1,6 +1,6 @@
 echo "Deploying database container..."
 cd ./mmai-db
-docker-compose -d up
+docker-compose up -d
 cd ..
 
 echo "Deploying API container..."

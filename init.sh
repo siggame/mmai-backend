@@ -17,8 +17,4 @@ do
     cd ..
 done
 
-echo "Creating docker network..."
-network_name="mmai-docker-network"
-docker network create $network_name
-
 echo "Backend prepared! Now, you must ensure that everything is set up for each submodule..."
